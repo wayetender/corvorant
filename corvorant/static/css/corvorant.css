@@ -3,3 +3,24 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.userbar p {
+	color: #ccc;
+	margin-top: 5px;
+	margin-bottom:0px;
+}
+
+.userbar a {
+	font-size: small;
+}

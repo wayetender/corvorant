@@ -19,10 +19,18 @@ def before_request():
     g.logger = logging.getLogger('corvorant')
     logging.getLogger().setLevel(app.config['LOG_LEVEL'])
     g.config = app.config
-    # if 'sessionid' in request.headers:
-    #     g.session = db.load_session(request.headers.get('sessionid'))
-    # else:
-    #     g.session = None
+    if 'sessionid' in session:
+        g.session = db.load_session(session['sessionid'])
+    else:
+        g.session = None
+
+
+@app.context_processor
+def inject_user():
+    if g.session:
+        return dict(user=g.session.user)
+    else:
+        return dict(user=None)
 
 @app.after_request
 def teardown_request(response):
@@ -33,13 +41,15 @@ def teardown_request(response):
 def shutdown_session(exception=None):
     DBSession.remove()
 
-@app.errorhandler(Exception)
-def error_handler(ex):
-    g.logger.exception(ex)
-    g.db_session.rollback()
-    return "{'result': 'error', 'message': '%s'}" % str(ex), 500
+# @app.errorhandler(Exception)
+# def error_handler(ex):
+#     g.logger.exception(ex)
+#     DBSession.rollback()
+#     return "{'result': 'error', 'message': '%s'}" % str(ex), 500
 
 
 ############################################ VIEWS ###########################################
 from views import home
+from views import auth
 app.register_blueprint(home.mod)
+app.register_blueprint(auth.mod)

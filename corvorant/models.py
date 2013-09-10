@@ -32,3 +32,17 @@ class User(Base):
     username = Column(String(255))
     password = Column(String(129))
     created = Column(DateTime)
+    sessions = relationship("Session", cascade="all,delete", backref="user", order_by="Session.expires")
+
+
+class Session(Base):
+    __tablename__ = 'sessions'
+
+    def __init__(self, sessionid, user_id, expires):
+        self.sessionid = sessionid
+        self.user_id = user_id
+        self.expires = expires
+
+    sessionid = Column(String(255), primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    expires = Column(DateTime)

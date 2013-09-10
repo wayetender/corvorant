@@ -1,0 +1,39 @@
+{% extends "frame.html" %}
+{% set page = 'about' %}
+{% block title %}Corvorant Course System :: About{% endblock %}
+{% block container %}
+<div class="container">
+
+{% include 'messages.html' %}
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Great for instructors. <span class="text-muted">Great for students.</span></h2>
+    <p class="lead">Corvorant is very easy to setup for instructors and students can immediately start using it. With support like student initiated group creation, automated submission scripts, and simple web pages, the friction between the instructor's feedback and the student's assignments is greatly diminished.</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive" style="width: 350px; border:1px solid black" src="/static/img/table_teaser.png" alt="Students View">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-5">
+    <a href="https://github.com/wayetender/corvorant"><img style="border:1px solid black; width:350px" src="/static/img/code_teaser.png" alt="Fork me on GitHub"></a>
+  </div>
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Open Source. <span class="text-muted">See for yourself.</span></h2>
+    <p class="lead">All code is available on GitHub under the GNU General Public License.</p>
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+{% include 'footer.html' %}
+</div>
+
+
+{% endblock %}

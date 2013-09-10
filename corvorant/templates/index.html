@@ -1,2 +1,41 @@
 {% extends "frame.html" %}
-{% block title %}Hello!{% endblock %}
+{% set page = 'home' %}
+{% block title %}Corvorant Course System{% endblock %}
+{% block container %}
+    {% include 'messages.html' %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello, courses!</h1>
+        <p>Corvorant provides very simple but powerful functionality for submissions and grading in your courses. Manage assignments and students easily with easily manageable groups, custom submission scripts, and more! </p>
+        <p><a class="btn btn-primary btn-lg" href="/about">Learn more &raquo;</a>
+            {% if not user %}
+            <a class="btn btn-danger btn-lg" href="/register">Sign up &raquo;</a>
+            {% endif %}
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Groups</h2>
+          <p>With Corvorant, it is very simple for you to create groups or for students to form them on their own through invitations. </p>
+          <p><a class="btn btn-default" href="/about">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Submissions Scripts</h2>
+          <p>Run scripts after a submission to spot check the submission (e.g. does a file exist, can it compile?). </p>
+          <p><a class="btn btn-default" href="/about">View details &raquo;</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Easy Feedback</h2>
+          <p>Students can see feedback on their submissions with the submission details page. They can see their grade and view grading comments.</p>
+          <p><a class="btn btn-default" href="/about">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+    {% include 'footer.html' %}
+    </div> <!-- /container -->
+{% endblock %}
