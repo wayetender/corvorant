@@ -8,5 +8,6 @@ alembic==0.6.0
 gunicorn==18.0
 itsdangerous==0.23
 newrelic==2.0.0.1
+psycopg2==2.5
 virtualenv==1.10.1
 wsgiref==0.1.2
