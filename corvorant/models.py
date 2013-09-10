@@ -32,6 +32,7 @@ class User(Base):
     username = Column(String(255))
     password = Column(String(129))
     created = Column(DateTime)
+    is_admin = Column(Boolean, default=False)
     sessions = relationship("Session", cascade="all,delete", backref="user", order_by="Session.expires")
 
 
@@ -46,3 +47,34 @@ class Session(Base):
     sessionid = Column(String(255), primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     expires = Column(DateTime)
+
+
+class Term(Base):
+    __tablename__ = 'terms'
+
+    def __init__(self, name):
+        self.name = name
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255))
+    current = Column(Boolean, default=True)
+    terms = relationship("Course", backref="term")
+
+
+class Course(Base):
+    __tablename__ = 'courses'
+
+    def __init__(self, code, name, term_id):
+        self.code = code
+        self.name = name
+        self.term_id = term
+        self.created = datetime.datetime.now()
+
+    id = Column(Integer, primary_key=True)
+    code = Column(String(16))
+    name = Column(String(255))
+    created = Column(DateTime)
+    term_id = Column(Integer, ForeignKey('terms.id'))
+    description = Column(String)
+    archived = Column(Boolean, default=False)
+
